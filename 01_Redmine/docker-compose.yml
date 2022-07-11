@@ -1,0 +1,44 @@
+# Utel Redmine
+version: '3.1'
+
+services:
+
+  redmine:
+    image: 'redmine:4.2.7'
+    container_name: Redmine_4_2_7
+    restart: always
+    ports:
+      - '80:3000'
+    environment:
+      REDMINE_DB_MYSQL: mysql
+      REDMINE_DB_USERNAME: root
+      REDMINE_DB_PASSWORD: example
+      # DB에 한글을 사용하기 위한 명령
+      REDMINE_DB_ENCODING: utf8
+    volumes:
+      - './Redmine_Data/Redmine/files:/usr/src/redmine/files'
+      # CKEditor에서 사용하는 이미지를 관리하는 볼륨 바인딩
+      - './Redmine_Data/Redmine/public/system:/usr/src/redmine/public/system'
+      - './Redmine_Data/Redmine/public/theme:/usr/src/redmine/public/theme'
+      - 'gitlab_data:/gitlab/data'
+    depends_on:
+      - mysql
+
+  mysql:
+    image: 'mysql:5.7.33'
+    container_name: MySQL_5_7_33
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+      MYSQL_DATABASE: redmine
+    # DB에 한글을 사용하기 위한 명령
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+    volumes:
+      - './Redmine_Data/Mysql:/var/lib/mysql'
+
+volumes:
+  gitblit_data:
+    external:
+      name: gitlab_data
