@@ -16,3 +16,7 @@ services:
       - './gitlab/config:/var/log/gitlab'
       - 'gitlab_data:/var/opt/gitlab'
     shm_size: '256m'
+    
+volumes:
+  gitblit_data:
+    driver: local
