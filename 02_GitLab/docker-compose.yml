@@ -18,5 +18,5 @@ services:
     shm_size: '256m'
     
 volumes:
-  gitblit_data:
+  gitlab_data:
     driver: local
