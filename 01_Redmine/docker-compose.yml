@@ -39,6 +39,6 @@ services:
       - './Redmine_Data/Mysql:/var/lib/mysql'
 
 volumes:
-  gitblit_data:
+  gitlab_data:
     external:
       name: gitlab_data
