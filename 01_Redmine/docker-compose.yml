@@ -41,4 +41,4 @@ services:
 volumes:
   gitlab_data:
     external:
-      name: gitlab_data
+      name: 02_gitlab_gitlab_data
