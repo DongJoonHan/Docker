@@ -41,4 +41,4 @@ services:
 volumes:
   gitblit_data:
     external:
-      name: gitblit_data
+      name: 02_gitblit_gitblit_data
