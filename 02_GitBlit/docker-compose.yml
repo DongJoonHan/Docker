@@ -1,3 +1,5 @@
+version: '3.1'
+
 services:
   gitblit:
     image: 'gitblit/gitblit:1.9.3'
